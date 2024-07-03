@@ -1,0 +1,40 @@
+<html>
+    <script>
+        console.log('hihi');
+    </script>
+    <script src="./data.js"></script>
+    <body>
+        <div id="wrapper">
+            
+        </div>
+    </body>
+    <script>
+        // const data2 = [
+        //     {
+        //         name: 'jj',
+        //         decription: 'its decription'
+        //     },
+
+        //     {
+        //         name: 'gg',
+        //         decription: 'decription'
+        //     }
+        // ];
+        let str ='';
+        
+        data.forEach((d) =>{
+            str += '<p>'+d.title+'</p>' 
+            + '<a href="'+d.url+'">'+d.url+'</a>' //'<a href>'+d.url+ d.url +'</a>'
+            +'<hr/>';
+        });
+
+        
+
+        // document.getElementById('wrapper').innerHTML = ;
+        // document.getElementById('wrapper').innerHTML = 'https://finance.yahoo.com/news/m-self-made-millionaire-5-130020698.html'
+        // document.getElementById('wrapper').innerHTML = '<p style="color:blue;">"안녕하세요"</p>';
+        document.getElementById("wrapper").innerHTML = str;
+        
+        
+    </script>
+</html>

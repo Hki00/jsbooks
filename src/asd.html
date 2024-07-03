@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        
+    <h1>The Element Object</h1>
+    <h2>The title Property</h2>
+    
+
+
+    <p><abbr id="myAbbr" title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+
+    
+    <p>The title of the abbr element is:</p>
+    <p id="demo"></p>
+    
+    <button type="button"
+    onclick="document.getElementById('demo').innerHTML = Date()">
+    Click me to display Date and Time.</button>
+
+
+    <script>
+
+        
+    const element = document.getElementById("myAbbr");
+    document.getElementById("demo").innerHTML = element.title;
+    </script>
+
+    </body>
+</html>
