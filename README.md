@@ -27,19 +27,20 @@ found 0 vulnerabilities
  /> node data.js
  ```
 
- ### newsserver/newsapi.js
- +사전작업
- 1. API key 세팅
- 2. [newspai.org](newspai.org) 가입후 주소 긁기
+ + 사전작업
+  + APIkey 세팅
+    - [https://newsapi.org](https://newsapi.org) 가입 후 로그인, apikey 참조
 
- ```
- //line5번
-const API KEY = 'YOUR API KEY'; get('') 여기에 키 넣기
+  + apiKey 아래 `YOUR_API_KEY`에 인입.
+```js
+// line 5
+const API_KEY = 'YOUR_API_KEY';
+```
 
-3. 키 넣고
-cmd:newsserver > node newsapi.js
-실행
--동작확인
+- newsapi 실행
+```
+newsserver\> node newsapi.js
+```
 
  ```
  ![](https://blog.kakaocdn.net/dn/IS8DC/btsImG5vIcO/uirk4LTvLBvEWSrq3SRaUK/img.png)
