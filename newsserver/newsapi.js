@@ -2,57 +2,57 @@ const express = require('express');
 const app = express();
 const axios = require('axios').default;
 
-const API_KEY = 'YOUR_API_KEY';
-const getApiData = async () => {
-    return await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${API_KEY}`)
+const API_KEY = '3f7142544c5b444782d34874d56f7592';
+const getApiData = async (countryCode) => {
+    return await axios.get(`https://newsapi.org/v2/top-headlines?country=${countryCode}&category=business&apiKey=${API_KEY}`)
                     .then(function(response) {
                         console.log(response.data.articles);
                         return response.data.articles;
                     });
 }
 
-app.get('/', async (request, response) => {
-    // const data = [
-    //     {
-    //         title: 'title111',
-    //         author: 'author111',
-    //         publishedAt: '2024-07-03 15:56:33',
-    //         url: 'http://www.naver.com'
-    //     },
-    //     {
-    //         title: 'title222',
-    //         author: 'author222',
-    //         publishedAt: '2024-07-03 17:58:33',
-    //         url: 'http://www.daum.com'
-    //     },
-    //     {
-    //         title: 'title333',
-    //         author: 'author3333',
-    //         publishedAt: '2024-07-01 11:56:33',
-    //         url: 'http://www.kakao.com'
-    //     },
-    // ]
-    const data = await getApiData();
-    let html = '';
-    data.forEach((d) => {
-        html += `<p>${d.title}</p>
-                <p>${d.author}</p>
-                <p>${d.publishedAt}</p>
-                <a href=${d.url}>${d.url}</a>
-                <hr/>`;
+app.get('/', async (req, res) => {
+    const data = await getApiData('us');
+    const result = data.map((object) => {
+        if(object.urlToImage !== null && object.urlToImage.endsWith('/')) {
+            object.urlToImage = object.urlToImage.slice(0, -1);
+            return object;
+        } else {
+            return object;
+        }
     });
-    response.send(`
-        <html>
-        <body>
-          <div id='wrapper'>
-          ${html}
-          </div>
-        </body>
-        </html>
-    `);
+    res.render('index', {
+        one: "this is one",
+        two: "this is two",
+        data: result
+    });
 });
 
-const port = 8000;
+
+
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+app.get('/domestic', async (req, res) => {
+    const data = await getApiData('kr');
+    const result = data.map((object) => {
+        if(object.urlToImage !== null && object.urlToImage.endsWith('/')) {
+            object.urlToImage = object.urlToImage.slice(0, -1);
+            return object;
+        } else {
+            return object;
+        }
+    });
+    res.render('domestic', {
+        one: "this is one",
+        two: "this is two",
+        data: result
+    });
+});
+
+
+
+const port = 8001;
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
 })
